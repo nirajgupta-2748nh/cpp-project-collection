@@ -1,48 +1,45 @@
 #include <iostream>
 using namespace std;
 
-int binarysearch(int n,int array[],int key)
-{
-int start=0;
-int end=n;
+int binarySearch(int n, int array[], int key){
+    int start = 0;
+    int end = n - 1;
 
-    while (start<=end)
-    {
-        int middle=(start+end)/2;
-        if (array[middle]==key)
-        {
-            return middle;/* code */
+    while (start <= end){
+        int middle = start + (end - start) / 2;
+        if (array[middle] == key){
+            return middle;
         }
-        else if (array[middle]<key)
-        {
-            end=middle-1;/* code */
+        else if (array[middle] < key){
+            start = middle + 1;
         }
-        else
-        {
-            start=middle+1;
-        }    
+        else{
+            end = middle - 1;
+        }
     }
     return -1;
-
 }
 
-int main()
-{
-    cout<<"enter size of array:";
+int main(){
     int n;
-    cin>>n;
+    cout << "Enter size of array: ";
+    cin >> n;
 
-    cout<<"enter elements of array:";
     int array[n];
-    for (int i=0; i<=n; i++)
-    {
-        cin>>array[i];
+    cout << "Enter elements of array (sorted): ";
+    for (int i = 0; i < n; i++){
+        cin >> array[i];
     }
 
     int key;
-    cout<<"enter key:";
-    cin>>key;
-    cout<<"index :"<<binarysearch (n,array,key)<<endl;
-
+    cout << "Enter key: ";
+    cin >> key;
+    int result = binarySearch(n, array, key);
+    if (result != -1){
+        cout << "Element found at index: " << result << endl;
+    }
+    else{
+        cout << "Element not found" << endl;
+    }
     return 0;
 }
